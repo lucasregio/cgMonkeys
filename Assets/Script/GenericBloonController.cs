@@ -46,6 +46,7 @@ public class GenericBloonController : MonoBehaviour
                         countBloons--;
                         GameObject @object = Instantiate(prefabBloon, transform.position, Quaternion.identity);
                         @object.GetComponent<AIMove>().damage = 1;
+                        @object.GetComponent<SpriteRenderer>().color = Color.red;
                         @object.GetComponent<AIMove>().balaoType = AIMove.TipoDeBalao.Normal;
                         @object.GetComponent<AIMove>().life = 1;
                         @object.GetComponent<AIMove>().amountGold = 5;
@@ -64,6 +65,7 @@ public class GenericBloonController : MonoBehaviour
                         round++;
                         needRestart = true;
                         GameObject @object = Instantiate(prefabBloon, transform.position, Quaternion.identity);
+                        @object.GetComponent<SpriteRenderer>().color = Color.yellow;
                         @object.GetComponent<AIMove>().damage = 3;
                         @object.GetComponent<AIMove>().balaoType = AIMove.TipoDeBalao.Camuflado;
                         @object.GetComponent<AIMove>().life = 10;
@@ -87,6 +89,7 @@ public class GenericBloonController : MonoBehaviour
                     {
                         countBloons--;
                         GameObject @object = Instantiate(prefabBloon, transform.position, Quaternion.identity);
+                        @object.GetComponent<SpriteRenderer>().color = Color.green;
                         @object.GetComponent<AIMove>().balaoType = AIMove.TipoDeBalao.Encouracado;
                         @object.GetComponent<AIMove>().damage = 5;
                         @object.GetComponent<AIMove>().life = 15;
@@ -110,6 +113,7 @@ public class GenericBloonController : MonoBehaviour
                     {
                         countBloons--;
                         GameObject @object = Instantiate(prefabBloon, transform.position, Quaternion.identity);
+                        @object.GetComponent<SpriteRenderer>().color = Color.blue;
                         @object.GetComponent<AIMove>().balaoType = AIMove.TipoDeBalao.MOAB;
                         @object.GetComponent<AIMove>().damage = 25;
                         @object.GetComponent<AIMove>().life = 50;
@@ -133,6 +137,7 @@ public class GenericBloonController : MonoBehaviour
                     {
                         countBloons--;
                         GameObject @object = Instantiate(prefabBloon, transform.position, Quaternion.identity);
+                        @object.GetComponent<SpriteRenderer>().color = Color.black;
                         @object.GetComponent<AIMove>().balaoType = AIMove.TipoDeBalao.MOAB;
                         @object.GetComponent<AIMove>().damage = 50;
                         @object.GetComponent<AIMove>().life = 100;

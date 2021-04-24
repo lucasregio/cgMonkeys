@@ -20,6 +20,9 @@ public class AIMove : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, path[index].position) > 0)
         {
+            Vector3 dir = path[index].position - transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.position = Vector3.MoveTowards(transform.position, path[index].position, Time.deltaTime * speed);
         }
         else
