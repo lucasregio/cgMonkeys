@@ -777,6 +777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeController: 1
   prefabBloon: {fileID: 0}
+  gameOver: {fileID: 531858816}
   round: 0
   timer: 0
   startTimer: 0
@@ -3274,11 +3275,12 @@ MonoBehaviour:
   typeController: 0
   prefabBloon: {fileID: 1085707373269909031, guid: 150f423e1a6dac8458d48f7dbc51458a,
     type: 3}
+  gameOver: {fileID: 0}
   round: 0
   timer: 0
   startTimer: 0
   countBloons: 0
-  maxBloons: 50
+  maxBloons: 1
 --- !u!1 &1858837914
 GameObject:
   m_ObjectHideFlags: 0
