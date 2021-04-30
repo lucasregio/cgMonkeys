@@ -6,7 +6,7 @@ public class GenericBloonController : MonoBehaviour
 {
     public enum TypeController { Spawnner, Destroyer}
     public TypeController typeController;
-    public GameObject prefabBloon;
+    public GameObject prefabBloon,gameOver;
     public int round;
     public float timer, startTimer;
     public int countBloons, maxBloons;
@@ -17,7 +17,6 @@ public class GenericBloonController : MonoBehaviour
     }
     public IEnumerator SpawnBloons()
     {
-        bool needRestart = false;
         yield return new WaitForEndOfFrame();
         while (GameManager.main.hasStard)
         {
@@ -30,124 +29,86 @@ public class GenericBloonController : MonoBehaviour
                 timer = startTimer;
                 if (round < 18)
                 {
-                    if (needRestart)
-                    {
-                        countBloons = maxBloons + (int)(maxBloons * 0.2f);
-                        yield return new WaitForSeconds(3f);
-                        needRestart = false;
-                    }
-                    if (countBloons < 0)
-                    {
-                        round++;
-                        needRestart = true;
-                    }
-                    else
-                    {
-                        countBloons--;
-                        GameObject @object = Instantiate(prefabBloon, transform.position, Quaternion.identity);
-                        @object.GetComponent<AIMove>().damage = 1;
-                        @object.GetComponent<SpriteRenderer>().color = Color.red;
-                        @object.GetComponent<AIMove>().balaoType = AIMove.TipoDeBalao.Normal;
-                        @object.GetComponent<AIMove>().life = 1;
-                        @object.GetComponent<AIMove>().amountGold = 5;
-                    }
+                    GameObject @object = Instantiate(prefabBloon, transform.position, Quaternion.identity);
+                    @object.GetComponent<SpriteRenderer>().color = Color.red;
+                    @object.GetComponent<AIMove>().damage = 1;
+                    @object.GetComponent<AIMove>().balaoType = AIMove.TipoDeBalao.Normal;
+                    @object.GetComponent<AIMove>().life = 1;
+                    @object.GetComponent<AIMove>().amountGold = 5;
                 }
-                else if (round >= 18)
+                else if (round >= 18 && round < 27)
                 {
-                    if (needRestart)
-                    {
-                        countBloons += maxBloons + (int)(maxBloons * 0.35f * 100f);
-                        yield return new WaitForSeconds(3f);
-                        needRestart = false;
-                    }
-                    if (countBloons < 0)
-                    {
-                        round++;
-                        needRestart = true;
-                        GameObject @object = Instantiate(prefabBloon, transform.position, Quaternion.identity);
-                        @object.GetComponent<SpriteRenderer>().color = Color.yellow;
-                        @object.GetComponent<AIMove>().damage = 3;
-                        @object.GetComponent<AIMove>().balaoType = AIMove.TipoDeBalao.Camuflado;
-                        @object.GetComponent<AIMove>().life = 10;
-                        @object.GetComponent<AIMove>().amountGold = 20;
-                    }
+                    GameObject @object = Instantiate(prefabBloon, transform.position, Quaternion.identity);
+                    @object.GetComponent<SpriteRenderer>().color = Color.yellow;
+                    @object.GetComponent<AIMove>().damage = 3;
+                    @object.GetComponent<AIMove>().balaoType = AIMove.TipoDeBalao.Normal;
+                    @object.GetComponent<AIMove>().life = 5;
+                    @object.GetComponent<AIMove>().amountGold = 25;
                 }
-                else if (round >= 36)
+                else if (round >= 27 && round < 36)
                 {
-                    if (needRestart)
-                    {
-                        countBloons += maxBloons + (int)(maxBloons * 0.4f);
-                        yield return new WaitForSeconds(3f);
-                        needRestart = false;
-                    }
-                    if (countBloons < 0)
-                    {
-                        round++;
-                        needRestart = true;
-                    }
-                    else
-                    {
-                        countBloons--;
-                        GameObject @object = Instantiate(prefabBloon, transform.position, Quaternion.identity);
-                        @object.GetComponent<SpriteRenderer>().color = Color.green;
-                        @object.GetComponent<AIMove>().balaoType = AIMove.TipoDeBalao.Encouracado;
-                        @object.GetComponent<AIMove>().damage = 5;
-                        @object.GetComponent<AIMove>().life = 15;
-                        @object.GetComponent<AIMove>().amountGold = 40;
-                    }
+                    GameObject @object = Instantiate(prefabBloon, transform.position, Quaternion.identity);
+                    @object.GetComponent<SpriteRenderer>().color = Color.green;
+                    @object.GetComponent<AIMove>().damage = 6;
+                    @object.GetComponent<AIMove>().balaoType = AIMove.TipoDeBalao.Camuflado;
+                    @object.GetComponent<AIMove>().life = 10;
+                    @object.GetComponent<AIMove>().amountGold = 100;
                 }
-                else if (round >= 54)
+                else if (round >= 36 && round < 54)
                 {
-                    if (needRestart)
-                    {
-                        countBloons += maxBloons + (int)(maxBloons * 0.45f);
-                        yield return new WaitForSeconds(3f);
-                        needRestart = false;
-                    }
-                    if (countBloons < 0)
-                    {
-                        round++;
-                        needRestart = true;
-                    }
-                    else
-                    {
-                        countBloons--;
-                        GameObject @object = Instantiate(prefabBloon, transform.position, Quaternion.identity);
-                        @object.GetComponent<SpriteRenderer>().color = Color.blue;
-                        @object.GetComponent<AIMove>().balaoType = AIMove.TipoDeBalao.MOAB;
-                        @object.GetComponent<AIMove>().damage = 25;
-                        @object.GetComponent<AIMove>().life = 50;
-                        @object.GetComponent<AIMove>().amountGold = 40;
-                    }
+                    GameObject @object = Instantiate(prefabBloon, transform.position, Quaternion.identity);
+                    @object.GetComponent<SpriteRenderer>().color = Color.cyan;
+                    @object.GetComponent<AIMove>().damage = 8;
+                    @object.GetComponent<AIMove>().balaoType = AIMove.TipoDeBalao.Encouracado;
+                    @object.GetComponent<AIMove>().life = 20;
+                    @object.GetComponent<AIMove>().amountGold = 200;
                 }
                 else
                 {
-                    if (needRestart)
-                    {
-                        countBloons += maxBloons + (int)(maxBloons * 0.5f);
-                        yield return new WaitForSeconds(3f);
-                        needRestart = false;
-                    }
-                    if (countBloons < 0)
-                    {
-                        round++;
-                        needRestart = true;
-                    }
-                    else
-                    {
-                        countBloons--;
-                        GameObject @object = Instantiate(prefabBloon, transform.position, Quaternion.identity);
-                        @object.GetComponent<SpriteRenderer>().color = Color.black;
-                        @object.GetComponent<AIMove>().balaoType = AIMove.TipoDeBalao.MOAB;
-                        @object.GetComponent<AIMove>().damage = 50;
-                        @object.GetComponent<AIMove>().life = 100;
-                        @object.GetComponent<AIMove>().amountGold = 500;
-                    }
+                    GameObject @object = Instantiate(prefabBloon, transform.position, Quaternion.identity);
+                    @object.GetComponent<SpriteRenderer>().color = Color.black;
+                    @object.GetComponent<AIMove>().damage = 15;
+                    @object.GetComponent<AIMove>().balaoType = AIMove.TipoDeBalao.MOAB;
+                    @object.GetComponent<AIMove>().life = 35;
+                    @object.GetComponent<AIMove>().amountGold = 500;
                 }
+                changeRound();
             }
             GameManager.main.round = round;
             GameManager.main.SetRoundOnScreen();
             yield return null;
+        }
+    }
+
+    public void changeRound()
+    {
+        if (countBloons <= 0)
+        {
+            round++;
+            if (round < 18)
+            {
+                countBloons = maxBloons;
+            }
+            else if (round >= 18 && round < 27)
+            {
+                countBloons = maxBloons + (int)(maxBloons * 0.2f);
+            }
+            else if (round >= 27 && round < 36)
+            {
+                countBloons = maxBloons + (int)(maxBloons * 0.3f);
+            }
+            else if (round >= 36 && round < 54)
+            {
+                countBloons = maxBloons + (int)(maxBloons * 0.4f);
+            }
+            else
+            {
+                countBloons = maxBloons + (int)(maxBloons * 0.5f);
+            }
+        }
+        else
+        {
+            countBloons--;
         }
     }
 
@@ -162,6 +123,8 @@ public class GenericBloonController : MonoBehaviour
             else
             {
                 GameManager.main.life = 0;
+                GameManager.main.hasStard = false;
+                gameOver.SetActive(true);
             }
             GameManager.main.SetLifeOnScreen();
             Destroy(collision.gameObject);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class GameManager : MonoBehaviour
     public void SelectMonkey(int index)
     {
         current = Monkeys[index];
+    }
+    public void Recomecar()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void MessageERROR()
     {
